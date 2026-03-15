@@ -1,0 +1,161 @@
+<svg viewBox="0 0 900 595" xmlns="http://www.w3.org/2000/svg"
+     font-family="monospace, sans-serif">
+  <defs>
+    <marker id="a0" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#8b949e"/>
+    </marker>
+    <marker id="a1" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#58a6ff"/>
+    </marker>
+    <marker id="a2" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#f0883e"/>
+    </marker>
+    <marker id="a3" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#3fb950"/>
+    </marker>
+    <marker id="a4" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#bc8cff"/>
+    </marker>
+    <marker id="a5" markerWidth="8" markerHeight="6" refX="7" refY="3" orient="auto">
+      <polygon points="0 0, 8 3, 0 6" fill="#ff7b72"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="900" height="595" fill="#0d1117" rx="14"/>
+  <rect x="1" y="1" width="898" height="593" fill="none" stroke="#21262d" stroke-width="1.5" rx="14"/>
+
+  <!-- Title bar -->
+  <rect x="0" y="0" width="900" height="52" fill="#161b22" rx="14"/>
+  <rect x="0" y="38" width="900" height="14" fill="#161b22"/>
+  <line x1="1" y1="52" x2="899" y2="52" stroke="#21262d" stroke-width="1"/>
+  <text x="450" y="32" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">AQI-R  ·  System Block Diagram</text>
+  <text x="450" y="46" text-anchor="middle" fill="#8b949e" font-size="10">Arduino Nano ESP32  ·  Sensirion SPS30  ·  I²C + SPI + GPIO</text>
+
+  <!-- ════════ POWER TREE (top-left) ════════ -->
+  <!-- USB-C box -->
+  <rect x="28" y="65" width="132" height="42" rx="6" fill="#161b22" stroke="#58a6ff" stroke-width="1.5"/>
+  <text x="94" y="82" text-anchor="middle" fill="#58a6ff" font-weight="bold" font-size="12">USB-C Input</text>
+  <text x="94" y="97" text-anchor="middle" fill="#8b949e" font-size="10">5 V  ·  up to 3 A</text>
+
+  <!-- 5V arrow -->
+  <line x1="94" y1="107" x2="94" y2="127" stroke="#f0883e" stroke-width="2" marker-end="url(#a2)"/>
+  <text x="101" y="120" fill="#f0883e" font-size="9">5 V</text>
+
+  <!-- 5V Rail -->
+  <rect x="28" y="129" width="132" height="42" rx="6" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="94" y="146" text-anchor="middle" fill="#f0883e" font-weight="bold" font-size="12">5 V Rail</text>
+  <text x="94" y="162" text-anchor="middle" fill="#8b949e" font-size="10">SPS30 Fan · SSR Coil</text>
+
+  <!-- 3.3V arrow -->
+  <line x1="94" y1="171" x2="94" y2="191" stroke="#3fb950" stroke-width="2" marker-end="url(#a3)"/>
+  <text x="101" y="184" fill="#3fb950" font-size="9">3.3 V</text>
+
+  <!-- 3.3V LDO -->
+  <rect x="28" y="193" width="132" height="42" rx="6" fill="#161b22" stroke="#3fb950" stroke-width="1.5"/>
+  <text x="94" y="210" text-anchor="middle" fill="#3fb950" font-weight="bold" font-size="12">3.3 V LDO</text>
+  <text x="94" y="226" text-anchor="middle" fill="#8b949e" font-size="10">MCU · SD · OLED · RTC</text>
+
+  <!-- 3.3V to ESP32 (dashed) -->
+  <line x1="160" y1="214" x2="308" y2="258" stroke="#3fb950" stroke-width="1.5" stroke-dasharray="5,3" marker-end="url(#a3)"/>
+
+  <!-- ════════ ESP32 CENTER ════════ -->
+  <rect x="308" y="220" width="222" height="158" rx="10" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="308" y="220" width="222" height="30" rx="10" fill="#1c2128" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="308" y="237" width="222" height="13" fill="#1c2128"/>
+  <text x="419" y="239" text-anchor="middle" fill="#58a6ff" font-weight="bold" font-size="13">Arduino Nano ESP32</text>
+  <text x="419" y="266" text-anchor="middle" fill="#8b949e" font-size="10">LX7 Dual-Core · 240 MHz · 512 KB SRAM</text>
+  <text x="419" y="282" text-anchor="middle" fill="#8b949e" font-size="10">3.3 V Native Logic · Native USB-C</text>
+  <text x="419" y="301" text-anchor="middle" fill="#58a6ff" font-size="10">Core 0  →  FSM / Sensor / Relay</text>
+  <text x="419" y="317" text-anchor="middle" fill="#58a6ff" font-size="10">Core 1  →  SD Logging / Display</text>
+  <text x="419" y="337" text-anchor="middle" fill="#8b949e" font-size="9">A4=SDA · A5=SCL · D10=CS · D11-13=SPI</text>
+  <text x="419" y="352" text-anchor="middle" fill="#8b949e" font-size="9">D2=INT(BTN) · D3=GPIO(SSR) · LED=Heartbeat</text>
+  <text x="419" y="367" text-anchor="middle" fill="#8b949e" font-size="9">Watchdog Timer enabled · NVS for calibration</text>
+
+  <!-- ════════ I2C BACKBONE (right column) ════════ -->
+  <text x="608" y="68" text-anchor="middle" fill="#58a6ff" font-size="11" font-weight="bold">I²C Bus  (SDA / SCL)</text>
+  <text x="608" y="82" text-anchor="middle" fill="#8b949e" font-size="9">Pins A4 / A5  ·  400 kHz Fast Mode  ·  3 devices, no conflicts</text>
+
+  <!-- Vertical backbone -->
+  <line x1="608" y1="88" x2="608" y2="430" stroke="#58a6ff" stroke-width="2" stroke-dasharray="6,3"/>
+
+  <!-- ESP32 right → I2C backbone -->
+  <line x1="530" y1="280" x2="608" y2="280" stroke="#58a6ff" stroke-width="2" marker-end="url(#a1)"/>
+  <text x="566" y="273" text-anchor="middle" fill="#58a6ff" font-size="9">I²C</text>
+
+  <!-- SPS30 -->
+  <rect x="645" y="92" width="228" height="68" rx="7" fill="#161b22" stroke="#bc8cff" stroke-width="1.5"/>
+  <text x="759" y="112" text-anchor="middle" fill="#bc8cff" font-weight="bold" font-size="12">Sensirion SPS30</text>
+  <text x="759" y="128" text-anchor="middle" fill="#8b949e" font-size="10">Laser PM Sensor  ·  I2C 0x69</text>
+  <text x="759" y="143" text-anchor="middle" fill="#8b949e" font-size="10">PM1.0 · PM2.5 · PM10  ·  5 V supply</text>
+  <text x="759" y="156" text-anchor="middle" fill="#8b949e" font-size="9">Self-cleaning fan · Factory calibrated</text>
+  <line x1="608" y1="126" x2="645" y2="126" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- OLED -->
+  <rect x="645" y="226" width="228" height="68" rx="7" fill="#161b22" stroke="#e3b341" stroke-width="1.5"/>
+  <text x="759" y="246" text-anchor="middle" fill="#e3b341" font-weight="bold" font-size="12">1.3″ OLED  (SH1106)</text>
+  <text x="759" y="262" text-anchor="middle" fill="#8b949e" font-size="10">128×64 px  ·  I2C 0x3C</text>
+  <text x="759" y="277" text-anchor="middle" fill="#8b949e" font-size="10">Real-time PPM · State · Alert UI</text>
+  <text x="759" y="290" text-anchor="middle" fill="#8b949e" font-size="9">Inverted color flash on ALERT</text>
+  <line x1="608" y1="260" x2="645" y2="260" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- DS3231 RTC -->
+  <rect x="645" y="358" width="228" height="68" rx="7" fill="#161b22" stroke="#e3b341" stroke-width="1.5"/>
+  <text x="759" y="378" text-anchor="middle" fill="#e3b341" font-weight="bold" font-size="12">DS3231 RTC</text>
+  <text x="759" y="394" text-anchor="middle" fill="#8b949e" font-size="10">Real-Time Clock  ·  I2C 0x68</text>
+  <text x="759" y="409" text-anchor="middle" fill="#8b949e" font-size="10">CSV timestamps for SD log</text>
+  <text x="759" y="422" text-anchor="middle" fill="#8b949e" font-size="9">CR2032 backup · ±2 ppm accuracy</text>
+  <line x1="608" y1="392" x2="645" y2="392" stroke="#58a6ff" stroke-width="1.5" marker-end="url(#a1)"/>
+
+  <!-- ════════ SPI → SD CARD ════════ -->
+  <path d="M530 358 Q562 358 562 505 L645 505" stroke="#f0883e" stroke-width="1.5" fill="none" marker-end="url(#a2)"/>
+  <text x="558" y="445" fill="#f0883e" font-size="9" text-anchor="middle">SPI</text>
+
+  <rect x="645" y="478" width="228" height="56" rx="7" fill="#161b22" stroke="#f0883e" stroke-width="1.5"/>
+  <text x="759" y="497" text-anchor="middle" fill="#f0883e" font-weight="bold" font-size="12">MicroSD Module</text>
+  <text x="759" y="513" text-anchor="middle" fill="#8b949e" font-size="10">SPI · CS=D10 · Up to 20 MHz</text>
+  <text x="759" y="526" text-anchor="middle" fill="#8b949e" font-size="9">CSV log · 30 s interval · Heartbeat LED blink</text>
+
+  <!-- ════════ SSR + AIR FILTER (bottom-center) ════════ -->
+  <!-- GPIO line from ESP32 bottom → SSR -->
+  <path d="M385 378 L385 440 L272 440" stroke="#ff7b72" stroke-width="1.5" fill="none" marker-end="url(#a5)"/>
+  <text x="362" y="435" fill="#ff7b72" font-size="9">D3 GPIO</text>
+
+  <rect x="112" y="416" width="160" height="56" rx="7" fill="#161b22" stroke="#ff7b72" stroke-width="1.5"/>
+  <text x="192" y="435" text-anchor="middle" fill="#ff7b72" font-weight="bold" font-size="12">Solid State Relay</text>
+  <text x="192" y="451" text-anchor="middle" fill="#8b949e" font-size="10">Opto-isolated  ·  5 V trigger</text>
+  <text x="192" y="463" text-anchor="middle" fill="#8b949e" font-size="9">120 V / 240 V  ·  G3MB-202P class</text>
+
+  <!-- SSR → AC Filter -->
+  <line x1="192" y1="472" x2="192" y2="498" stroke="#ff7b72" stroke-width="2" marker-end="url(#a5)"/>
+
+  <rect x="112" y="499" width="160" height="48" rx="7" fill="#1c2128" stroke="#8b949e" stroke-width="1.5" stroke-dasharray="5,3"/>
+  <text x="192" y="519" text-anchor="middle" fill="#8b949e" font-weight="bold" font-size="12">AC Air Filter / Fan</text>
+  <text x="192" y="535" text-anchor="middle" fill="#8b949e" font-size="9">120 V / 240 V Mains  (external device)</text>
+
+  <!-- Snubber annotation -->
+  <text x="290" y="487" fill="#8b949e" font-size="8">RC Snubber</text>
+  <text x="290" y="498" fill="#8b949e" font-size="8">across AC terminals</text>
+
+  <!-- ════════ OVERRIDE BUTTON ════════ -->
+  <rect x="112" y="275" width="160" height="56" rx="7" fill="#161b22" stroke="#bc8cff" stroke-width="1.5"/>
+  <text x="192" y="294" text-anchor="middle" fill="#bc8cff" font-weight="bold" font-size="12">Override Button</text>
+  <text x="192" y="310" text-anchor="middle" fill="#8b949e" font-size="10">Hardware Interrupt  ·  Pin D2</text>
+  <text x="192" y="322" text-anchor="middle" fill="#8b949e" font-size="9">10 kΩ pull-up · 0.1 μF debounce cap</text>
+
+  <!-- Button → ESP32 INT -->
+  <line x1="272" y1="303" x2="308" y2="278" stroke="#bc8cff" stroke-width="1.5" marker-end="url(#a4)"/>
+  <text x="286" y="283" fill="#bc8cff" font-size="9">INT</text>
+
+  <!-- ════════ LEGEND ════════ -->
+  <rect x="28" y="498" width="74" height="84" rx="5" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="65" y="514" text-anchor="middle" fill="#8b949e" font-size="9" font-weight="bold">LEGEND</text>
+  <line x1="36" y1="525" x2="54" y2="525" stroke="#58a6ff" stroke-width="2"/>
+  <text x="58" y="529" fill="#8b949e" font-size="8">I²C Bus</text>
+  <line x1="36" y1="540" x2="54" y2="540" stroke="#f0883e" stroke-width="2"/>
+  <text x="58" y="544" fill="#8b949e" font-size="8">SPI / 5 V</text>
+  <line x1="36" y1="555" x2="54" y2="555" stroke="#3fb950" stroke-width="2" stroke-dasharray="4,2"/>
+  <text x="58" y="559" fill="#8b949e" font-size="8">3.3 V</text>
+  <line x1="36" y1="570" x2="54" y2="570" stroke="#ff7b72" stroke-width="2"/>
+  <text x="58" y="574" fill="#8b949e" font-size="8">GPIO</text>
+</svg>

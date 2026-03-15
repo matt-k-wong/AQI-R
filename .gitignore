@@ -1,0 +1,48 @@
+# Arduino build artefacts
+build/
+*.hex
+*.elf
+*.bin
+*.map
+
+# PlatformIO
+.pio/
+.pioenvs/
+.piolibdeps/
+
+# Arduino IDE cache
+.arduino15/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+._*
+.Spotlight-V100
+.Trashes
+
+# Windows
+Thumbs.db
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+
+# VS Code
+.vscode/
+*.code-workspace
+
+# SD card log files (don't commit data captures)
+*.csv
+!hardware/BOM.csv
+
+# Fritzing backups
+*.fzb
+*.fzbz.bak
+
+# KiCad backups
+*.kicad_pcb-bak
+*.sch-bak
+fp-info-cache

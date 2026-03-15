@@ -1,0 +1,8 @@
+# Firmware will be placed here once the hardware design is finalised and bench-tested.
+# Expected files:
+#   AQI_R/AQI_R.ino    — Main Arduino sketch
+#   AQI_R/config.h     — Tunable constants (thresholds, intervals, pin defs)
+#   AQI_R/fsm.h        — Finite State Machine header
+#   AQI_R/fsm.cpp      — FSM implementation
+#   AQI_R/display.h    — OLED display helpers
+#   AQI_R/logger.h     — SD card logging helpers

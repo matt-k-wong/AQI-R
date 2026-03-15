@@ -1,0 +1,136 @@
+<svg viewBox="0 0 800 520" xmlns="http://www.w3.org/2000/svg"
+     font-family="monospace, sans-serif">
+  <defs>
+    <marker id="ah" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#8b949e"/>
+    </marker>
+    <marker id="ah-g" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#3fb950"/>
+    </marker>
+    <marker id="ah-r" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#ff7b72"/>
+    </marker>
+    <marker id="ah-p" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#bc8cff"/>
+    </marker>
+    <marker id="ah-y" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#e3b341"/>
+    </marker>
+    <marker id="ah-b" markerWidth="9" markerHeight="7" refX="8" refY="3.5" orient="auto">
+      <polygon points="0 0, 9 3.5, 0 7" fill="#58a6ff"/>
+    </marker>
+  </defs>
+
+  <!-- Background -->
+  <rect width="800" height="520" fill="#0d1117" rx="14"/>
+  <rect x="1" y="1" width="798" height="518" fill="none" stroke="#21262d" stroke-width="1.5" rx="14"/>
+
+  <!-- Title -->
+  <rect x="0" y="0" width="800" height="50" fill="#161b22" rx="14"/>
+  <rect x="0" y="36" width="800" height="14" fill="#161b22"/>
+  <line x1="1" y1="50" x2="799" y2="50" stroke="#21262d" stroke-width="1"/>
+  <text x="400" y="28" text-anchor="middle" fill="#e6edf3" font-size="15" font-weight="bold">AQI-R  ·  Finite State Machine</text>
+  <text x="400" y="44" text-anchor="middle" fill="#8b949e" font-size="10">Relay state, display mode, and transition logic</text>
+
+  <!-- ════════ INITIAL DOT + ENTRY ════════ -->
+  <circle cx="18" cy="258" r="7" fill="#58a6ff"/>
+  <line x1="25" y1="258" x2="55" y2="258" stroke="#8b949e" stroke-width="1.5" marker-end="url(#ah)"/>
+
+  <!-- ════════ STATE: WARMUP ════════ -->
+  <!-- box: (57,230) 160×56 -->
+  <rect x="57" y="230" width="164" height="58" rx="9" fill="#161b22" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="57" y="230" width="164" height="24" rx="9" fill="#1c2128" stroke="#58a6ff" stroke-width="2"/>
+  <rect x="57" y="242" width="164" height="12" fill="#1c2128"/>
+  <text x="139" y="247" text-anchor="middle" fill="#58a6ff" font-weight="bold" font-size="12">WARMUP</text>
+  <text x="139" y="264" text-anchor="middle" fill="#8b949e" font-size="9">Relay: OFF  (forced)</text>
+  <text x="139" y="277" text-anchor="middle" fill="#8b949e" font-size="9">Display: "Initialising…"</text>
+
+  <!-- WARMUP → AUTO_CLEAN -->
+  <path d="M175,230 C200,190 250,158 302,150" stroke="#3fb950" stroke-width="1.5" fill="none" marker-end="url(#ah-g)"/>
+  <text x="242" y="183" text-anchor="middle" fill="#3fb950" font-size="9">Warmup done (~10 s)</text>
+  <text x="242" y="195" text-anchor="middle" fill="#3fb950" font-size="9">sensor stable</text>
+
+  <!-- ════════ STATE: AUTO_CLEAN ════════ -->
+  <!-- box: (302,120) 164×58 -->
+  <rect x="302" y="120" width="164" height="58" rx="9" fill="#161b22" stroke="#3fb950" stroke-width="2"/>
+  <rect x="302" y="120" width="164" height="24" rx="9" fill="#1c2128" stroke="#3fb950" stroke-width="2"/>
+  <rect x="302" y="132" width="164" height="12" fill="#1c2128"/>
+  <text x="384" y="137" text-anchor="middle" fill="#3fb950" font-weight="bold" font-size="12">AUTO_CLEAN</text>
+  <text x="384" y="154" text-anchor="middle" fill="#8b949e" font-size="9">Relay: OFF</text>
+  <text x="384" y="167" text-anchor="middle" fill="#8b949e" font-size="9">Display: PPM + "AUTO  ✓"</text>
+
+  <!-- AUTO_CLEAN → AUTO_ALERT (left side, down) -->
+  <line x1="330" y1="178" x2="330" y2="340" stroke="#ff7b72" stroke-width="1.5" marker-end="url(#ah-r)"/>
+  <text x="240" y="258" text-anchor="middle" fill="#ff7b72" font-size="9">PM2.5 &gt; 50 μg/m³</text>
+  <text x="240" y="270" text-anchor="middle" fill="#ff7b72" font-size="9">(threshold exceeded)</text>
+
+  <!-- AUTO_ALERT → AUTO_CLEAN (right side, up) -->
+  <line x1="436" y1="340" x2="436" y2="178" stroke="#3fb950" stroke-width="1.5" marker-end="url(#ah-g)"/>
+  <text x="524" y="262" text-anchor="middle" fill="#3fb950" font-size="9">PM2.5 &lt; 40 μg/m³</text>
+  <text x="524" y="274" text-anchor="middle" fill="#3fb950" font-size="9">+ 5 min hold timer</text>
+
+  <!-- ════════ STATE: AUTO_ALERT ════════ -->
+  <!-- box: (302,340) 164×58 -->
+  <rect x="302" y="340" width="164" height="58" rx="9" fill="#161b22" stroke="#ff7b72" stroke-width="2"/>
+  <rect x="302" y="340" width="164" height="24" rx="9" fill="#1c2128" stroke="#ff7b72" stroke-width="2"/>
+  <rect x="302" y="352" width="164" height="12" fill="#1c2128"/>
+  <text x="384" y="357" text-anchor="middle" fill="#ff7b72" font-weight="bold" font-size="12">AUTO_ALERT</text>
+  <text x="384" y="374" text-anchor="middle" fill="#8b949e" font-size="9">Relay: ON</text>
+  <text x="384" y="387" text-anchor="middle" fill="#8b949e" font-size="9">Display: "⚠ POOR AIR" (flash)</text>
+
+  <!-- ════════ AUTO_CLEAN ↔ MANUAL_ON ════════ -->
+  <!-- AUTO_CLEAN → MANUAL_ON -->
+  <path d="M466,140 C510,130 545,215 570,230" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#ah-p)"/>
+  <text x="528" y="176" text-anchor="middle" fill="#bc8cff" font-size="9">Button press</text>
+
+  <!-- MANUAL_ON → AUTO_CLEAN -->
+  <path d="M570,258 C545,270 510,182 466,168" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#ah-p)"/>
+  <text x="516" y="235" text-anchor="middle" fill="#bc8cff" font-size="9">Button press</text>
+
+  <!-- ════════ AUTO_ALERT → MANUAL_ON ════════ -->
+  <path d="M466,368 C510,368 555,282 570,268" stroke="#bc8cff" stroke-width="1.5" fill="none" marker-end="url(#ah-p)"/>
+  <text x="540" y="348" text-anchor="middle" fill="#bc8cff" font-size="9">Button press</text>
+
+  <!-- ════════ STATE: MANUAL_ON ════════ -->
+  <!-- box: (570,228) 164×58 -->
+  <rect x="570" y="228" width="164" height="58" rx="9" fill="#161b22" stroke="#bc8cff" stroke-width="2"/>
+  <rect x="570" y="228" width="164" height="24" rx="9" fill="#1c2128" stroke="#bc8cff" stroke-width="2"/>
+  <rect x="570" y="240" width="164" height="12" fill="#1c2128"/>
+  <text x="652" y="245" text-anchor="middle" fill="#bc8cff" font-weight="bold" font-size="12">MANUAL_ON</text>
+  <text x="652" y="262" text-anchor="middle" fill="#8b949e" font-size="9">Relay: ON  (forced)</text>
+  <text x="652" y="275" text-anchor="middle" fill="#8b949e" font-size="9">Display: "MANUAL  ●"</text>
+
+  <!-- ════════ SYSTEM_ERROR ════════ -->
+  <!-- From AUTO_CLEAN down-left to SYSTEM_ERROR -->
+  <path d="M302,155 C230,170 160,340 192,405" stroke="#e3b341" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#ah-y)"/>
+  <text x="210" y="280" text-anchor="middle" fill="#e3b341" font-size="9">Sensor fail or</text>
+  <text x="210" y="292" text-anchor="middle" fill="#e3b341" font-size="9">SD full / missing</text>
+
+  <!-- From SYSTEM_ERROR up-right back to AUTO_CLEAN -->
+  <path d="M250,403 C320,380 360,240 366,178" stroke="#3fb950" stroke-width="1.5" fill="none" stroke-dasharray="5,3" marker-end="url(#ah-g)"/>
+  <text x="352" y="310" text-anchor="middle" fill="#3fb950" font-size="9">Fault cleared,</text>
+  <text x="352" y="322" text-anchor="middle" fill="#3fb950" font-size="9">sensor restored</text>
+
+  <!-- SYSTEM_ERROR box: (57,405) 190×60 -->
+  <rect x="57" y="405" width="190" height="60" rx="9" fill="#161b22" stroke="#e3b341" stroke-width="2" stroke-dasharray="6,3"/>
+  <rect x="57" y="405" width="190" height="24" rx="9" fill="#1c2128" stroke="#e3b341" stroke-width="2" stroke-dasharray="6,3"/>
+  <rect x="57" y="417" width="190" height="12" fill="#1c2128"/>
+  <text x="152" y="422" text-anchor="middle" fill="#e3b341" font-weight="bold" font-size="12">SYSTEM_ERROR</text>
+  <text x="152" y="439" text-anchor="middle" fill="#8b949e" font-size="9">Relay: OFF  (fail-safe)</text>
+  <text x="152" y="452" text-anchor="middle" fill="#8b949e" font-size="9">Display: "SD ERR" / "SENSOR FAIL"</text>
+  <text x="152" y="463" text-anchor="middle" fill="#8b949e" font-size="8">Watchdog reboots if hung &gt; 8 s</text>
+
+  <!-- ════════ LEGEND ════════ -->
+  <rect x="600" y="395" width="180" height="110" rx="6" fill="#161b22" stroke="#30363d" stroke-width="1"/>
+  <text x="690" y="413" text-anchor="middle" fill="#8b949e" font-size="10" font-weight="bold">LEGEND</text>
+  <line x1="610" y1="425" x2="636" y2="425" stroke="#3fb950" stroke-width="2"/>
+  <text x="642" y="429" fill="#8b949e" font-size="9">Air quality OK / Cleared</text>
+  <line x1="610" y1="442" x2="636" y2="442" stroke="#ff7b72" stroke-width="2"/>
+  <text x="642" y="446" fill="#8b949e" font-size="9">Threshold exceeded</text>
+  <line x1="610" y1="459" x2="636" y2="459" stroke="#bc8cff" stroke-width="2"/>
+  <text x="642" y="463" fill="#8b949e" font-size="9">User button press</text>
+  <line x1="610" y1="476" x2="636" y2="476" stroke="#e3b341" stroke-width="2" stroke-dasharray="5,3"/>
+  <text x="642" y="480" fill="#8b949e" font-size="9">Fault / Recovery</text>
+  <line x1="610" y1="493" x2="636" y2="493" stroke="#58a6ff" stroke-width="2"/>
+  <text x="642" y="497" fill="#8b949e" font-size="9">System entry</text>
+</svg>
